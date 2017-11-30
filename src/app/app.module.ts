@@ -9,26 +9,30 @@ import {TransityInterceptor} from './transity.interceptor'
 
 import { AppComponent } from './app.component';
 import { TriplistComponent } from './triplist/triplist.component';
+import { LoginComponent } from './login/login.component';
 import {MaterialModule} from './material.module';
+import { IonicApp, IonicModule } from 'ionic-angular';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TriplistComponent
+    TriplistComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicModule.forRoot(AppComponent)
   ],
   providers: [{
     provide : HTTP_INTERCEPTORS,
     useClass : TransityInterceptor,
     multi : true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [IonicApp]
 })
 export class AppModule { }
