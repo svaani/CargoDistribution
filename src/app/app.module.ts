@@ -12,13 +12,17 @@ import { TriplistComponent } from './triplist/triplist.component';
 import { LoginComponent } from './login/login.component';
 import {MaterialModule} from './material.module';
 import { IonicApp, IonicModule } from 'ionic-angular';
+import { TabsComponent } from './tabs/tabs.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TriplistComponent,
-    LoginComponent
+    LoginComponent,
+    TabsComponent,
+
   ],
   imports: [
     BrowserModule,
