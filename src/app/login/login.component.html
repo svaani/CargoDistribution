@@ -1,20 +1,11 @@
 <ion-content padding>
     <h3 class="login-header">Login</h3>
-    <div class="login-container">
-        <input matInput placeholder="User Name" [(ngModel)]="user.username">
-
-        <input matInput placeholder="Password" type="password" [(ngModel)]="user.password">
-
-        <div class="button-row">
-            <button mat-raised-button color="primary" (click)="login(user)">Login</button>
-        </div>
-    </div>
 
     <form novalidate>
         <ion-list no-lines>
             <ion-item>
                 <ion-label floating>Username</ion-label>
-                <ion-input name="username" type="text" spellcheck="false" autocapitalize="off" required>
+                <ion-input name="username" type="text" spellcheck="false" [(ngModel)]="user.username" autocapitalize="off" required>
                 </ion-input>
             </ion-item>
             <p ion-text color="danger" padding-left>
@@ -23,7 +14,7 @@
 
             <ion-item>
                 <ion-label floating>Password</ion-label>
-                <ion-input name="password" type="password" required>
+                <ion-input name="password" type="password" [(ngModel)]="user.password" required>
                 </ion-input>
             </ion-item>
             <p ion-text color="danger" padding-left>
@@ -34,7 +25,7 @@
 
         <ion-row responsive-sm>
             <ion-col>
-                <button ion-button outline round routerLink="/triplist" type="submit" block>Login</button>
+                <button ion-button outline round (click)="login(user)" type="submit" block>Login</button>
             </ion-col>
 
         </ion-row>
