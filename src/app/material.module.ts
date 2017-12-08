@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import {CdkTableModule} from '@angular/cdk/table';
+
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -34,6 +36,7 @@ import {
     MatTooltipModule,
     MatStepperModule,
   } from '@angular/material';
+import { ItabsComponent } from './ionic/itabs/itabs.component';
 
 @NgModule({
  imports : [MatButtonModule],
@@ -69,9 +72,9 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
-
- ]
+    MatTooltipModule
+ ],
+ declarations: []
 })
 
 export class MaterialModule { }
