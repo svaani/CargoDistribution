@@ -13,23 +13,33 @@ import {DefaultUrlSerializer} from '@angular/router'
 export class LoginComponent implements OnInit {
 
   user = {
-    username: '',
-    password: ''
+    username: 'transity.ts@gmail.com',
+    password: '123'
   };
   constructor(private router: Router, private http: HttpClient, private auth: AuthService) { }
 
   ngOnInit() {
   }
+  login2(usercreds) {
+
+    let userlogin = this.auth.login(usercreds);
+      userlogin.then((res) => {
+        if (res)
+        this.router.navigate(['/triplist']);
+      })
+  }
+
   login(usercreds) {
     
     let urlSearchParams = new URLSearchParams();
-    urlSearchParams.append('username', this.user.username);
-    urlSearchParams.append('password', this.user.password);
+    urlSearchParams.append('username', usercreds.username);
+    urlSearchParams.append('password', usercreds.password);
     urlSearchParams.append('grant_type','password');
     urlSearchParams.append('client_id','my-trusted-client');
 
-    this.http.post('http://localhost:8080/cargo/oauth/token',
+    this.http.post('http://35.154.80.6:8080/cargo/oauth/token',
     urlSearchParams.toString()).subscribe((data) => {
+      this.auth.setToken(data);
       this.router.navigate(['/triplist']);
       }
       )
