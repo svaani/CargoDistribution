@@ -29,11 +29,10 @@ export class AuthService {
     urlSearchParams.append('client_id', 'my-trusted-client');
 
     return new Promise((resolve) => {
-      this.http.post('http://35.154.80.6:8080/cargo/oauth/token',
+      this.http.post('http://localhost:8080/cargo/oauth/token',
         urlSearchParams.toString()).subscribe((data) => {
         }
         )
     })
   }
- 
 }

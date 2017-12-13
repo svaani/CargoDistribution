@@ -28,5 +28,4 @@ export class AuthManager implements CanActivate {
         this.router.navigate(['/login']);
         return false;
     }
-  
 }

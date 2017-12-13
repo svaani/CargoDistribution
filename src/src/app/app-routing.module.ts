@@ -4,17 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { TriplistComponent } from './triplist/triplist.component'
 import { LoginComponent } from './login/login.component'
 import {AuthManager} from './authmanager';
-import { ItabsComponent } from './ionic/itabs/itabs.component';
+
 
 const routes: Routes = [
   {
   path:'triplist',
   component: TriplistComponent
+ 
 },{
-  path :'itabs',
-  component:ItabsComponent
-},
-{
   path : 'login',
   component:LoginComponent, 
   canActivate: [AuthManager]
@@ -32,7 +29,7 @@ export class AppRoutingModule { }
 
 
 export const appRoutes: Routes = [
-    {path: '', component:LoginComponent, pathMatch: 'full'},
+    {path: '', component:LoginComponent},
     {path: 'login', component:LoginComponent, canActivate: [AuthManager]}
 ];
 

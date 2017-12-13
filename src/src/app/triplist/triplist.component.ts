@@ -5,10 +5,9 @@ import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import {Observable} from 'rxjs/Observable';
-import { ItabsComponent } from '../ionic/itabs/itabs.component';
-
 
 declare var google: any;
+
 @Component({
   selector: 'app-triplist',
   templateUrl: './triplist.component.html',
@@ -16,9 +15,6 @@ declare var google: any;
 })
 
 export class TriplistComponent implements OnInit {
-
-
-  private componentToDisplay: number = 1;  // this is used for display google map and triplist flag
 
   @ViewChild('map') mapRef:ElementRef;
 
@@ -29,30 +25,21 @@ export class TriplistComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
-   // this.DisplayMap();  
+    this.DisplayMap();
   }
-
-  // this is used for display triplist and google map dependupon the flag  number = 1;
-
-  setComponent(componentNumber: number): void {
-    this.componentToDisplay = componentNumber;
-  }
-
-  // this function used for navigate another page like sque page
-  squeroot(){
-    this.router.navigate(['/itabs']);
-}
 
   getData() {
-    
+    //localhost:8080/cargo/api/hub/retrieve_tripsheet?vehicleTripId=168&loggedInUserId=13
+
     let urlSearchParams = new URLSearchParams();
-    urlSearchParams.append('vehicleTripId', '119');
+    urlSearchParams.append('vehicleTripId', '168');
     urlSearchParams.append('loggedInUserId', '13');
 
-    this.http.get('http://localhost:8080/cargo/api/hub/retrieve_tripsheet?vehicleTripId=119&loggedInUserId=13').subscribe((data) => {
+    this.http.get('http://35.154.80.6:8080/cargo/api/hub/retrieve_tripsheet?vehicleTripId=168&loggedInUserId=13').subscribe((data) => {
        console.log(data);
        this.tripList = data;
-      } 
+      // alert("yes");
+      }
       )
     }
 
@@ -64,6 +51,7 @@ export class TriplistComponent implements OnInit {
             center:location,
             zoom:10,
             streetViewControl:false,
+           
           };
             const map = new google.maps.Map(this.mapRef.nativeElement,options);
           this.addMarker(location,map);
