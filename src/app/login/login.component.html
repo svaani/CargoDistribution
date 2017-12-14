@@ -1,37 +1,64 @@
 <ion-content padding>
     <h3 class="login-header">Login</h3>
-
-    <form novalidate>
+    
+    <form #loginForm="ngForm" >
         <ion-list no-lines>
             <ion-item>
-                <ion-label floating>Username</ion-label>
-                <ion-input name="username" type="text" spellcheck="false" [(ngModel)]="user.username" autocapitalize="off" required>
+                <ion-label floating>Email-id</ion-label>
+                <ion-input id="username" name="username" email type="text" spellcheck="false" [(ngModel)]="user.username" autocapitalize="off" #username="ngModel" required >
                 </ion-input>
+           
             </ion-item>
-            <p ion-text color="danger" padding-left>
-                Username is required
-            </p>
+            <div *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="alert alert-danger">
+                <div *ngIf="username.errors.required">
+                          Email-id is required.
+                 </div>
+                 <div *ngIf="username.errors?.email"> 
+                             Email not valid.
+                </div> 
+            </div>
+             
 
-            <ion-item>
+            <ion-item no-lines>
                 <ion-label floating>Password</ion-label>
-                <ion-input name="password" type="password" [(ngModel)]="user.password" required>
+                <ion-input id="password" name="password"  #password="ngModel"  type="password" [(ngModel)]="user.password" required  >
                 </ion-input>
             </ion-item>
-            <p ion-text color="danger" padding-left>
-                Password is required
-            </p>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="password.errors.required">
+                        pasword is required.
+                    </div>
+                </div>
         </ion-list>
+            
 
 
         <ion-row responsive-sm>
             <ion-col>
-                <button ion-button outline round (click)="login(user)" type="submit" block>Login</button>
+                <button ion-button outline round (click)="login(user)" [disabled]="!loginForm.form.valid" type="submit" block>Login</button>
             </ion-col>
 
         </ion-row>
 
     </form>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-9 push-5>
+          
+    <mat-progress-spinner 
+        [style.display]="showSpinner ? 'block' : 'none'" 
+        class="progress-spinner"
+        [color]="'primary'"
+        [diameter]="30" 
+        [strokeWidth]="2"
+        [mode]="'indeterminate'">
+    </mat-progress-spinner>
 
-
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+        
 
 </ion-content>

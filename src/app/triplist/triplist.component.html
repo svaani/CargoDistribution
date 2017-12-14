@@ -1,36 +1,35 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Home</ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only>
-          <ion-icon name="contact"></ion-icon>
+      <ion-title>Home</ion-title>
+      <ion-buttons end>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
         </button>
-        </ion-buttons>
-        <ion-buttons end>
-            <button ion-button icon-only>
-          <ion-icon name="more"></ion-icon>
-        </button>
-        </ion-buttons>
-
+          <mat-menu #menu="matMenu" (click)="logout()">
+            <button mat-menu-item >
+              <mat-icon>lock outline</mat-icon>
+              LogOut
+            </button>
+          </mat-menu>
+      </ion-buttons>
+ 
     </ion-navbar>
-
+  
     <ion-toolbar>
-        <ion-item>
-            <p item-start>smalltruck</p>
-            <p item-end>ka51c4750 </p>
-        </ion-item>
+      <ion-item>
+        <p item-start>smalltruck</p>
+        <p item-end>ka51c4750 </p>
+      </ion-item>
     </ion-toolbar>
-
+  
 </ion-header>
 
 
-<ion-content class="padding-new">
+<ion-content  class="padding-new">
 
-    <ion-card class="card-design" *ngFor="let trip of tripList.message">
+    <ion-card class="card-design"  *ngFor="let trip of tripList.message">
         <ion-list>
-            <ion-item no-lines style="cursor:pointer;">
-
-
+            <ion-item no-lines style="cursor:pointer;" (click)="squeroot()">
                 <h3>{{trip.name}}</h3>
                 <p class="fontview"><span>{{trip.consigneeName}}</span> | <span>{{trip.consigneePhoneNo}}</span></p>
                 <p style="white-space: normal;">{{trip.locationAddress}} </p>
@@ -40,22 +39,18 @@
                 <ion-label no-margin> {{trip.weightTonnage}} tons </ion-label>
                 <ion-label no-margin> </ion-label>
                 <ion-list no-lines item-right>
-                    <button ion-button color="danger" clear icon-only>
+                <button ion-button color="danger" clear icon-only>
                     <ion-icon name='close-circle' style="color:red;" ></ion-icon>
-              </button>
+               </button>
                     <button ion-button color="danger" clear icon-only>
                   <ion-icon name='checkmark-circle' style="color:green" ></ion-icon>
               </button>
                 </ion-list>
-
             </ion-item>
-
-
         </ion-list>
-
     </ion-card>
 
-    <div>
+    <div >
         <div style="height: 100%; width: 100%" #map id="map_canvas"></div>
     </div>
 
@@ -64,68 +59,14 @@
 
 <ion-footer class="footer-ion">
 
-    <ion-segment>
-        <ion-segment-button class="segment-new" value="all">
-            <ion-icon class="icon-color" name="menu"></ion-icon>
+    <ion-segment >
+        <ion-segment-button (click)= "setComponent(1)" class="segment-new" value="all">
+                <ion-icon class="icon-color"  name="menu"></ion-icon>
         </ion-segment-button>
-        <ion-segment-button class="segment-new" value="favorites">
-            <ion-icon class="icon-color" name="pin"></ion-icon>
+        <ion-segment-button (click)= "setComponent(2)" class="segment-new" value="favorites">
+                <ion-icon class="icon-color" name="pin"></ion-icon>
         </ion-segment-button>
     </ion-segment>
 
+
 </ion-footer>
-
-<!-- <ion-content>
-
-
-     
-
-      <mat-grid-list  cols="3" rowHeight="1:1">
-          <mat-grid-tile>
-          <button ion-item no-lines >
-              <h3>Company Name</h3> 
-              <p class="fontview"><span>suresh krishna</span> | <span>97652236542</span></p>
-              <p style="white-space: normal;">address:no 12 old post office </p>
-             
-          </button>
-          </mat-grid-tile>
-          <mat-grid-tile> 12 tons</mat-grid-tile>
-          <mat-grid-tile>
-              <button no-margin  ion-button  clear icon-only>
-                  <ion-icon no-margin  name='close-circle' style="color:red;" ></ion-icon>
-                </button> 
-                <button no-margin  ion-button  clear icon-only>
-                  <ion-icon no-margin  name='checkmark-circle' style="color:green" ></ion-icon>
-                </button> 
-          </mat-grid-tile>
-        </mat-grid-list>
-
-    <ion-list>
-        
-        <ion-item-group >
-    
-          <button ion-item >
-              <h3>Company Name</h3> 
-              <p class="fontview"><span>suresh krishna</span> | <span>97652236542</span></p>
-              <p style="white-space: normal;">address:no 12 old post office </p>
-             
-          </button>
-    
-              <ion-item no-margin lines >
-                  <h3>12 tons</h3>  
-                  <ion-note style="margin:0px !important;" item-end>
-                      <button ion-button  clear icon-only>
-                          <ion-icon name='close-circle' style="color:red;" ></ion-icon>
-                        </button> 
-                        <button ion-button  clear icon-only>
-                          <ion-icon name='checkmark-circle' style="color:green" ></ion-icon>
-                        </button> 
-                  </ion-note>
-                </ion-item>
-    
-        </ion-item-group>
-        
-        </ion-list>
-    
-
-</ion-content> -->
